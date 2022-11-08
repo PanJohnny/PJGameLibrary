@@ -1,8 +1,11 @@
 import com.panjohnny.pjgl.api.GameApplication;
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.PJGLRegistries;
+import com.panjohnny.pjgl.api.event.OperationInterceptor;
+import com.panjohnny.pjgl.api.object.GameObject;
 import com.panjohnny.pjgl.core.rendering.GLFWWindow;
 import com.panjohnny.pjgl.core.rendering.OrthographicCamera;
+import com.panjohnny.pjgl.modules.debug.PrintFPSModule;
 
 public class TestApp extends GameApplication {
     /**
@@ -29,11 +32,23 @@ public class TestApp extends GameApplication {
      */
     @Override
     public void load() {
-        PJGLRegistries.GAME_OBJECT_MANAGER_REGISTRY.getDefaultManager().add(new ImageStuff());
+        PJGLRegistries.GAME_OBJECT_MANAGER_REGISTRY.get(GameObject.class).add(new ImageStuff());
         ((OrthographicCamera)PJGL.getCamera()).changeSize(1080, 720);
     }
+
+    /**
+     * Place where you should save your data, called when {@link GLFWWindow#shouldClose()}
+     *
+     * @param closeOperationInterceptor interceptor that can stop the program from shutting down, use with caution
+     */
+    @Override
+    public void close(OperationInterceptor closeOperationInterceptor) {
+        closeOperationInterceptor.intercept();
+    }
+
     public static void main(String[] args) {
         PJGL.registerApplication(new TestApp());
+        PJGL.useModule(PrintFPSModule::new);
         PJGL.run();
     }
 }

@@ -1,5 +1,7 @@
 package com.panjohnny.pjgl.api;
 
+import com.panjohnny.pjgl.api.module.IllegalPJGLModuleException;
+import com.panjohnny.pjgl.api.module.PJGLModule;
 import com.panjohnny.pjgl.core.rendering.*;
 import com.panjohnny.pjgl.api.state.PostInit;
 import com.panjohnny.pjgl.api.state.PreInit;
@@ -21,6 +23,11 @@ public final class PJGL {
 
     public static final List<GameApplication> APPS = new ArrayList<>();
 
+    /**
+     * @apiNote Contains modules after run
+     */
+    public static final List<PJGLModule> MODULES = new ArrayList<>();
+
     private static Thread pjglThread;
     private static RendererInfo rendererInfo = RendererInfo.defaultRendererInfo();
     private static CameraFactory cameraFactory = OrthographicCamera::new;
@@ -33,6 +40,16 @@ public final class PJGL {
     public static void registerApplication(GameApplication application) {
         StateCheck.pre();
         APPS.add(application);
+    }
+
+    /**
+     * Registers module for use
+     * @param pjglModuleFactory module factory such as <code>SomeModule::new</code>
+     */
+    @PreInit
+    public static void useModule(PJGLModule.PJGLModuleFactory pjglModuleFactory) {
+        StateCheck.pre();
+        PJGLRegistries.MODULE_REGISTRY.registerFromInstance(pjglModuleFactory.create(null), pjglModuleFactory);
     }
 
     /**
@@ -71,6 +88,17 @@ public final class PJGL {
         StateCheck.pre();
         core = new PJGLCore(rendererInfo, cameraFactory);
         APPS.forEach(GameApplication::registerAll);
+        PJGLRegistries.MODULE_REGISTRY.close();
+        PJGLRegistries.MODULE_REGISTRY.forEach((id, modFactory) -> {
+            PJGLModule module = modFactory.create(core);
+
+            if (!module.getIdentifier().equals(id))
+                throw new IllegalPJGLModuleException("Different identifiers provided to the registry");
+
+
+            module.registerAll();
+            MODULES.add(module);
+        });
         pjglThread = new Thread(core, "PJGL-main");
         pjglThread.start();
     }

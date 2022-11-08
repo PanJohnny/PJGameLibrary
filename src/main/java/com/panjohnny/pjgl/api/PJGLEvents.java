@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.api;
 
+import com.panjohnny.pjgl.api.event.OperationInterceptor;
 import com.panjohnny.pjgl.api.event.PJGLEvent;
 import com.panjohnny.pjgl.api.event.PJGLOneUseEvent;
 import com.panjohnny.pjgl.core.PJGLCore;
@@ -28,4 +29,10 @@ public final class PJGLEvents {
      * @see GameApplication#load()
      */
     public static final PJGLOneUseEvent.Empty GL_LOAD_EVENT = new PJGLOneUseEvent.Empty();
+
+    /**
+     * Reached when window.shouldClose() is true. Can be intercepted which means that the window would not close and application will remain running. Should be used to save your app.
+     * @see GLFWWindow#shouldClose()
+     */
+    public static final PJGLEvent<OperationInterceptor> PJGL_EXIT_EVENT = new PJGLEvent<>();
 }

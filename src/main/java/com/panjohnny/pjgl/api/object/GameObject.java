@@ -69,4 +69,12 @@ public abstract class GameObject {
         this.height = height;
         return this;
     }
+
+    /**
+     * Very important method for checking if object can be rendered.
+     * @return true if the object can be rendered
+     */
+    public boolean canBeRendered() {
+        return texture != null;
+    }
 }

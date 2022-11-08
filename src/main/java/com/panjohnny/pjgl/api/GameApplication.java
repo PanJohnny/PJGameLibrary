@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.api;
 
+import com.panjohnny.pjgl.api.event.OperationInterceptor;
 import com.panjohnny.pjgl.core.rendering.GLFWWindow;
 
 public abstract class GameApplication {
@@ -8,6 +9,7 @@ public abstract class GameApplication {
         PJGLEvents.WINDOW_INIT_EVENT.listen(this::modifyWindow);
         PJGLEvents.PJGL_INIT_EVENT.listen(this::init);
         PJGLEvents.GL_LOAD_EVENT.listen(this::load);
+        PJGLEvents.PJGL_EXIT_EVENT.listen(this::close);
     }
 
     /**
@@ -27,4 +29,10 @@ public abstract class GameApplication {
      * Place where you should register objects and modify rendering (OpenGL) aspects if you want to. Called after {@link #modifyWindow(GLFWWindow)}
      */
     public abstract void load();
+
+    /**
+     * Place where you should save your data, called when {@link GLFWWindow#shouldClose()}
+     * @param closeOperationInterceptor interceptor that can stop the program from shutting down, use with caution
+     */
+    public abstract void close(OperationInterceptor closeOperationInterceptor);
 }

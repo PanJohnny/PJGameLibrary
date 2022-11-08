@@ -264,8 +264,20 @@ public class GLFWWindow {
         glfwMakeContextCurrent(windowPointer);
     }
 
+    /**
+     * @throws IllegalStateException if window is not packed
+     */
     public boolean shouldClose() {
+        WindowChecks.packed(this);
         return glfwWindowShouldClose(this.windowPointer);
+    }
+
+    /**
+     * @throws IllegalStateException if window is not packed
+     */
+    public void setShouldClose(boolean value) {
+        WindowChecks.packed(this);
+        glfwSetWindowShouldClose(this.windowPointer, value);
     }
 
     /**

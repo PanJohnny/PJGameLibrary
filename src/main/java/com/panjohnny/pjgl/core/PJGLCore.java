@@ -2,6 +2,7 @@ package com.panjohnny.pjgl.core;
 
 import com.panjohnny.pjgl.api.PJGLEvents;
 import com.panjohnny.pjgl.api.PJGLRegistries;
+import com.panjohnny.pjgl.api.event.OperationInterceptor;
 import com.panjohnny.pjgl.core.helpers.Shader;
 import com.panjohnny.pjgl.core.rendering.*;
 import org.joml.Matrix4f;
@@ -109,8 +110,8 @@ public class PJGLCore implements Runnable{
 
         initialized = true;
 
-        PJGLEvents.GL_LOAD_EVENT.call();
         PJGLRegistries.GAME_OBJECT_MANAGER_REGISTRY.close();
+        PJGLEvents.GL_LOAD_EVENT.call();
 
         recalculateFPS();
         long startTime = System.nanoTime();
@@ -118,7 +119,7 @@ public class PJGLCore implements Runnable{
         long frameCounterStart = System.nanoTime();
         long frameCounterEnd = frameCounterStart + 1_000_000_000L;
         Dimension lastSize = null;
-        while (!glfwWindow.shouldClose()) {
+        while (shouldRun()) {
             glfwPollEvents();
             if (System.nanoTime() >= frameCounterEnd) {
                 frameCounterStart = System.nanoTime();
@@ -156,5 +157,21 @@ public class PJGLCore implements Runnable{
 
     public GLFWWindow getGlfwWindow() {
         return glfwWindow;
+    }
+
+    public boolean shouldRun() {
+        if (!glfwWindow.shouldClose())
+            return true;
+        OperationInterceptor interceptor = new OperationInterceptor();
+
+        PJGLEvents.PJGL_EXIT_EVENT.call(interceptor);
+
+        if (!interceptor.isIntercepted()) {
+            PJGLEvents.PJGL_EXIT_EVENT.drop();
+            return false;
+        }
+
+        glfwWindow.setShouldClose(false);
+        return true;
     }
 }

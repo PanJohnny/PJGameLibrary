@@ -20,6 +20,8 @@ public class PJGLEvent<T> {
     }
 
     public void call(T t) {
+        if (dropped)
+            throw new IllegalStateException("PJGLEvent already dropped");
         for (PJGLHook<T> listener : listeners) {
             listener.consume(t);
         }

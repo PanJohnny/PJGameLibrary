@@ -26,13 +26,16 @@ public abstract class AbstractGameObjectManager<T extends GameObject> {
         public void renderObjects(Matrix4f world, Camera camera, Shader shader, AbstractGameObjectRenderer recommendedRenderer) {
             var objects = getObjects();
             for (GameObject object : objects) {
-                recommendedRenderer.render(object, world, camera, shader);
+                recommendedRenderer.renderObject(object, world, camera, shader);
             }
         }
 
         @Override
         public void updateObjects(long deltaTime) {
-
+            var objects = getObjects();
+            for (GameObject object : objects) {
+                object.update(deltaTime);
+            }
         }
     }
 
