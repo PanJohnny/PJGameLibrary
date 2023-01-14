@@ -1,6 +1,6 @@
 package com.panjohnny.pjgl.api.event;
 
-public class PJGLOneUseEvent<T> extends PJGLEvent<T>{
+public class PJGLOneUseEvent<T> extends PJGLEvent<T> {
     @Override
     public void call(T t) {
         super.call(t);
