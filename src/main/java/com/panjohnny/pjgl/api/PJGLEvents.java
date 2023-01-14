@@ -3,36 +3,38 @@ package com.panjohnny.pjgl.api;
 import com.panjohnny.pjgl.api.event.OperationInterceptor;
 import com.panjohnny.pjgl.api.event.PJGLEvent;
 import com.panjohnny.pjgl.api.event.PJGLOneUseEvent;
-import com.panjohnny.pjgl.core.PJGLCore;
-import com.panjohnny.pjgl.core.rendering.GLFWWindow;
+import com.panjohnny.pjgl.core.adapters.WindowAdapter;
 
 public final class PJGLEvents {
-    /**
-     * Called after GLFW has initialized. It is first in {@link PJGLCore}#init() method. You should load data here, although not objects.
-     * @see GameApplication#init()
-     */
-    public static final PJGLOneUseEvent.Empty PJGL_INIT_EVENT = new PJGLOneUseEvent.Empty();
 
     /**
-     * Called before {@link GLFWWindow#pack()}. You can modify glfw hints here.
+     * Ran before window initialization.
      */
-    public static final PJGLEvent<GLFWWindow> WINDOW_PREPARE_EVENT = new PJGLOneUseEvent<>();
+    public static final PJGLEvent.Empty LOAD = new PJGLOneUseEvent.Empty();
 
     /**
-     * Called after {@link GLFWWindow#pack()}. You can modify window properties here.
-     * @see GameApplication#modifyWindow(GLFWWindow)
+     * Called when window is set to be visible (for the first time).
      */
-    public static final PJGLEvent<GLFWWindow> WINDOW_INIT_EVENT = new PJGLOneUseEvent<>();
+    public static final PJGLOneUseEvent.Empty VISIBLE = new PJGLOneUseEvent.Empty();
 
     /**
-     * Called after OpenGL load. Here you can do any opengl operations.
-     * @see GameApplication#load()
+     * Called every loop.
+     *
+     * @deprecated Left here for polling events only!
      */
-    public static final PJGLOneUseEvent.Empty GL_LOAD_EVENT = new PJGLOneUseEvent.Empty();
+    @SuppressWarnings("all")
+    public static final PJGLEvent.Empty LOOP = new PJGLEvent.Empty();
+
+    /**
+     * Called every tick.
+     */
+    public static final PJGLEvent.Empty TICK = new PJGLEvent.Empty();
+
 
     /**
      * Reached when window.shouldClose() is true. Can be intercepted which means that the window would not close and application will remain running. Should be used to save your app.
-     * @see GLFWWindow#shouldClose()
+     *
+     * @see WindowAdapter#shouldClose()
      */
     public static final PJGLEvent<OperationInterceptor> PJGL_EXIT_EVENT = new PJGLEvent<>();
 }

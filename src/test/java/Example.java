@@ -1,9 +1,15 @@
-# PanJohnny's Game Library
-A game library for making simple games in java
+import com.panjohnny.pjgl.adapt.desktop.JDInitializer;
+import com.panjohnny.pjgl.api.PJGL;
+import com.panjohnny.pjgl.api.asset.Sprite;
+import com.panjohnny.pjgl.api.asset.img.SpriteUtil;
+import com.panjohnny.pjgl.api.object.GameObject;
+import com.panjohnny.pjgl.api.object.components.Position;
+import com.panjohnny.pjgl.api.object.components.Size;
+import com.panjohnny.pjgl.api.object.components.SpriteRenderer;
 
-## Example with java desktop (awt + swing)
+import java.awt.Image;
 
-```java
+@SuppressWarnings("unused")
 public class Example {
     public static void main(String[] args) {
         PJGL.init(new JDInitializer("Apple!"));
@@ -20,10 +26,3 @@ public class Example {
         pjgl.getManager().addObject(apple);
     }
 }
-```
-
-## Adaptability
-
-This project is free to be adapted by anyone. I stepped down from handling graphics using lwjgl's openGL, so I only implemented the java desktop adapter. I created this in a way that makes it possible to plug in lwjgl.
-
-You can read more information at the wiki, or ask me directly. [@PanJohnny1](https://twitter.com/PanJohnny1)

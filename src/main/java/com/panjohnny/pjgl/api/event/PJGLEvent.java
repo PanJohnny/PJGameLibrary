@@ -34,6 +34,10 @@ public class PJGLEvent<T> {
         listeners = null;
     }
 
+    public int getListenerCount() {
+        return listeners.size();
+    }
+
     public static class Empty extends PJGLEvent<Void> {
         private List<PJGLHook.EmptyHook> listeners;
         private boolean dropped;
