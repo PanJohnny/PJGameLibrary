@@ -43,7 +43,7 @@ public class GameObjectManager {
         }
 
         if (!removeQueue.isEmpty()) {
-            objects.addAll(removeQueue);
+            objects.removeAll(removeQueue);
             removeQueue.clear();
         }
     }
