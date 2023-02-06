@@ -6,6 +6,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * A keyboard adapter. Uses VK key codes provided by {@link KeyEvent}.
+ *
+ * @see KeyEvent
+ * @author PanJohnny
+ */
 public class JDKeyboard implements KeyListener, KeyboardAdapter {
     private final ArrayList<Character> chars = new ArrayList<>();
     private final ArrayList<Integer> codes = new ArrayList<>();

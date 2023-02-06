@@ -1,5 +1,14 @@
 package com.panjohnny.pjgl.api.asset;
 
+/**
+ * Implementation of {@link Drawable} that should be implemented by renderer adapter.
+ *
+ * @see com.panjohnny.pjgl.api.object.components.SpriteRenderer
+ * @see com.panjohnny.pjgl.api.asset.img.SpriteUtil
+ * @param <T> Type of sprite (type of data it holds).
+ *
+ * @author PanJohnny
+ */
 public class Sprite<T> implements Drawable {
     private final String id;
     private final T image;

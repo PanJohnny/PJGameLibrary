@@ -6,6 +6,11 @@ import com.panjohnny.pjgl.api.object.GameObject;
 import java.awt.*;
 import java.util.function.Consumer;
 
+/**
+ * Component for implementing your own graphics rendering.
+ *
+ * @author PanJohnny
+ */
 @SuppressWarnings("unused")
 public class G2DRenderer extends Component {
     private Consumer<Graphics2D> render;

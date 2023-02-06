@@ -11,6 +11,11 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.List;
 
+/**
+ * Renderer implementing support for {@link SpriteRenderer} and {@link G2DRenderer}.
+ *
+ * @author PanJohnny
+ */
 public class JDRenderer extends Canvas implements RendererAdapter {
     @Override
     public void render(List<GameObject> objects) {

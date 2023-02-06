@@ -5,6 +5,12 @@ import com.panjohnny.pjgl.api.event.PJGLEvent;
 import com.panjohnny.pjgl.api.event.PJGLOneUseEvent;
 import com.panjohnny.pjgl.core.adapters.WindowAdapter;
 
+/**
+ * PJGLEvents is a final class that contains a set of predefined events for PJGL Engine.
+ * These events are executed at specific moments in the engine's lifecycle.
+ *
+ * @author PanJohnny
+ */
 public final class PJGLEvents {
 
     /**

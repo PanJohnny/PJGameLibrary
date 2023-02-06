@@ -3,6 +3,11 @@ package com.panjohnny.pjgl.api.object.components;
 import com.panjohnny.pjgl.api.object.Component;
 import com.panjohnny.pjgl.api.object.GameObject;
 
+/**
+ * Made of width and height integers.
+ *
+ * @author PanJohnny
+ */
 public class Size extends Component {
     public int width, height;
 

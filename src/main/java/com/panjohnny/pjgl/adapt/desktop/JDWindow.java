@@ -7,6 +7,11 @@ import com.panjohnny.pjgl.core.adapters.WindowAdapter;
 
 import javax.swing.*;
 
+/**
+ * Basically {@link JFrame}.
+ *
+ * @author PanJohnny
+ */
 public class JDWindow extends JFrame implements WindowAdapter {
     private final JDMouse mouse;
     private final JDKeyboard keyboard;

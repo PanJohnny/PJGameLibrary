@@ -7,6 +7,16 @@ import com.panjohnny.pjgl.api.object.GameObject;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Simple collision detection system. Uses {@link Rectangle} that is created from {@link Position} and {@link Size}.
+ *
+ * @see Rectangle
+ * @see Position
+ * @see Size
+ *
+ * @implNote Position and Size components are required to be on the object.
+ * @author PanJohnny
+ */
 @SuppressWarnings("unused")
 public class Collider extends Component {
     private final Rectangle bounds;
@@ -31,7 +41,7 @@ public class Collider extends Component {
         Size size = owner.getComponent(Size.class);
 
         if (position != null && size != null) {
-            // texture cliping
+            // texture clipping
             bounds.setBounds(position.x - 1, position.y - 1, size.width + 1, size.height + 1);
         } else {
             bounds.setBounds(0, 0, 0, 0);

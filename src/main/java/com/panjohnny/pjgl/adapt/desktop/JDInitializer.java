@@ -5,6 +5,11 @@ import com.panjohnny.pjgl.core.PJGLCore;
 import com.panjohnny.pjgl.core.adapters.RendererAdapter;
 import com.panjohnny.pjgl.core.adapters.WindowAdapter;
 
+/**
+ * Initializer to quickly start your project with this adaptation.
+ *
+ * @author PanJohnny
+ */
 public class JDInitializer implements PJGLInitializer {
 
     private final String title;

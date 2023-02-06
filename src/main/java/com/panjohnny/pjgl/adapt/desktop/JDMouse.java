@@ -9,6 +9,11 @@ import com.panjohnny.pjgl.core.adapters.MouseAdapter;
 import javax.swing.event.MouseInputListener;
 import java.awt.event.MouseEvent;
 
+/**
+ * Mouse adapter aiming to provide basic mouse control.
+ *
+ * @author PanJohnny
+ */
 public class JDMouse implements MouseInputListener, MouseAdapter {
     public final PJGLEvent<MouseClicksObjectData> onObjectClick = new PJGLEvent<>();
     private final boolean[] keys = new boolean[3];

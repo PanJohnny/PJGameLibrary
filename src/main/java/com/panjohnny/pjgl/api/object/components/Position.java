@@ -7,6 +7,12 @@ import com.panjohnny.pjgl.api.util.MathUtil;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Simple 2d position implementation with integer x and y.
+ *
+ * @implNote Please note that I don't advise using getDirection method.
+ * @author PanJohnny
+ */
 @SuppressWarnings("unused")
 public class Position extends Component {
     public int x, y;

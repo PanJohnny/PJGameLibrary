@@ -9,6 +9,12 @@ import com.panjohnny.pjgl.core.adapters.WindowAdapter;
 
 import java.io.IOException;
 
+/**
+ * Core class of the entire project.
+ *
+ * @apiNote I left some fields public in order to access information that might come handy for some projects.
+ * @author PanJohnny
+ */
 @SuppressWarnings("unused")
 public class PJGLCore implements Runnable {
     public static final int DEFAULT_WIDTH = 1024;

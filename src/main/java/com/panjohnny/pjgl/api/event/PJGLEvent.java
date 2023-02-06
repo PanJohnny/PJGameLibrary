@@ -4,6 +4,16 @@ package com.panjohnny.pjgl.api.event;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An event that can be fired repeatedly with set type parameter indicating passed argument.
+ * @param <T> Parameter that is passed when calling this event.
+ *
+ * @author PanJohnny
+ *
+ * @see Empty
+ * @see PJGLOneUseEvent
+ * @see PJGLOneUseEvent.Empty
+ */
 @SuppressWarnings("unused")
 public class PJGLEvent<T> {
     private List<PJGLHook<T>> listeners;
@@ -38,6 +48,15 @@ public class PJGLEvent<T> {
         return listeners.size();
     }
 
+    /**
+     * An event that can be fired repeatedly with set type to <code>Void</code>, meaning that no argument needs to be passed when calling it and none provided when listening to it.
+     *
+     * @see PJGLEvent
+     * @see PJGLOneUseEvent
+     * @see PJGLOneUseEvent.Empty
+     *
+     * @author PanJohnny
+     */
     public static class Empty extends PJGLEvent<Void> {
         private List<PJGLHook.EmptyHook> listeners;
         private boolean dropped;

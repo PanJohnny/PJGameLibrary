@@ -1,5 +1,10 @@
 package com.panjohnny.pjgl.core.adapters;
 
+/**
+ * Adapter for getting the mouse input.
+ *
+ * @author PanJohnny
+ */
 @SuppressWarnings("unused")
 public interface MouseAdapter {
     int BUTTON_LEFT = 0;

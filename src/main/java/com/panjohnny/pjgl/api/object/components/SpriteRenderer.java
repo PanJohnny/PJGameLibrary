@@ -4,6 +4,13 @@ import com.panjohnny.pjgl.api.asset.Sprite;
 import com.panjohnny.pjgl.api.object.Component;
 import com.panjohnny.pjgl.api.object.GameObject;
 
+/**
+ * Used to represent sort of container for sprite used to render.
+ *
+ * @implSpec When creating your own renderer you need to create your own logic for this component if you want it to work. You can look into {@link com.panjohnny.pjgl.adapt.desktop.JDRenderer}.
+ * @apiNote Does not render anything, just a container.
+ * @author PanJohnny
+ */
 @SuppressWarnings("unused")
 public class SpriteRenderer extends Component {
     public boolean resizeWithSize = true;
