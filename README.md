@@ -1,5 +1,6 @@
 # PanJohnny's Game Library
 [![](https://jitpack.io/v/PanJohnny/PJGameLibrary.svg)](https://jitpack.io/#PanJohnny/PJGameLibrary)
+
 A game library for making simple games in java
 
 ## Example with java desktop (awt + swing)
