@@ -23,14 +23,16 @@ public class JDKeyboard implements KeyListener, KeyboardAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        chars.add(e.getKeyChar());
-        codes.add(e.getKeyCode());
+        if (!codes.contains(e.getKeyCode())) {
+            chars.add(e.getKeyChar());
+            codes.add(e.getKeyCode());
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        chars.remove((Object) e.getKeyChar());
-        codes.remove((Object) e.getKeyCode());
+        chars.remove((Character) e.getKeyChar());
+        codes.remove((Integer) e.getKeyCode());
     }
 
     @Override
