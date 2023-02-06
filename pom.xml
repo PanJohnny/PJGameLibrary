@@ -6,7 +6,7 @@
 
     <groupId>com.panjohnny.pjgl</groupId>
     <artifactId>PJGL</artifactId>
-    <version>A0.3</version>
+    <version>v0.3.1-alpha</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

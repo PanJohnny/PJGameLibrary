@@ -14,11 +14,17 @@ public class GameObjectManager {
 
     private final ArrayList<GameObject> objects;
 
+    private final ArrayList<GameObject> addQueue;
+
+    private final ArrayList<GameObject> removeQueue;
+
     /**
      * Constructs an instance of GameObjectManager.
      */
     public GameObjectManager() {
         objects = new ArrayList<>();
+        addQueue = new ArrayList<>();
+        removeQueue = new ArrayList<>();
     }
 
     /**
@@ -29,6 +35,16 @@ public class GameObjectManager {
     public void update(long delta) {
         for (GameObject object : objects) {
             object.update(delta);
+        }
+
+        if (!addQueue.isEmpty()) {
+            objects.addAll(addQueue);
+            addQueue.clear();
+        }
+
+        if (!removeQueue.isEmpty()) {
+            objects.addAll(removeQueue);
+            removeQueue.clear();
         }
     }
 
@@ -44,7 +60,7 @@ public class GameObjectManager {
     /**
      * Adds a new instance of {@link GameObject} to the game.
      *
-     * @param object the new instance of GameObject.
+     * @param object GameObject to add.
      */
     public void addObject(GameObject object) {
         objects.add(object);
@@ -53,7 +69,7 @@ public class GameObjectManager {
     /**
      * Removes an instance of {@link GameObject} from the game.
      *
-     * @param object the instance of GameObject to remove.
+     * @param object GameObject to remove.
      */
     public void removeObject(GameObject object) {
         objects.remove(object);
@@ -66,5 +82,21 @@ public class GameObjectManager {
      */
     public ArrayList<GameObject> getObjects() {
         return objects;
+    }
+
+    /**
+     * Queues addition of an object to take place at the end of the tick in order to prevent concurrent modification.
+     * @param object GameObject to add.
+     */
+    public void queueAddition(GameObject object) {
+        addQueue.add(object);
+    }
+
+    /**
+     * Queues removal of an object to take place at the end of the tick in order to prevent concurrent modification.
+     * @param object GameObject to remove.
+     */
+    public void queueRemoval(GameObject object) {
+        removeQueue.add(object);
     }
 }
