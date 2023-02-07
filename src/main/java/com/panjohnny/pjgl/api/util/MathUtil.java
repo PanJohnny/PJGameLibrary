@@ -55,4 +55,28 @@ public final class MathUtil {
     public static boolean between(int n, int min, int max) {
         return n >= min && n <= max;
     }
+
+    /**
+     * Determines if the given float value is between the specified minimum and maximum values.
+     *
+     * @param n the value to be tested
+     * @param min the minimum value
+     * @param max the maximum value
+     * @return {@code true} if the value is between the minimum and maximum, {@code false} otherwise
+     */
+    public static boolean between(float n, float min, float max) {
+        return n >= min && n <= max;
+    }
+
+    /**
+     * Determines if the given double value is between the specified minimum and maximum values.
+     *
+     * @param n the value to be tested
+     * @param min the minimum value
+     * @param max the maximum value
+     * @return {@code true} if the value is between the minimum and maximum, {@code false} otherwise
+     */
+    public static boolean between(double n, double min, double max) {
+        return n >= min && n <= max;
+    }
 }
