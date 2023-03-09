@@ -1,11 +1,13 @@
 package com.panjohnny.pjgl.api.object;
 
+import java.io.Serializable;
+
 /**
  * Represents a component of a {@link GameObject}.
  *
  * @author PanJohnny
  */
-public abstract class Component {
+public abstract class Component implements Serializable {
     /**
      * The owner {@link GameObject} of this component.
      */

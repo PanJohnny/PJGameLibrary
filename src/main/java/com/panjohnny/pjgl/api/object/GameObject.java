@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.api.object;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.LinkedList;
  * </p>
  * @author PanJohnny
  */
-public abstract class GameObject {
+public abstract class GameObject implements Serializable {
 
     /**
      * A linked list of {@link Component} objects making up the behavior of the game object.

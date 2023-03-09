@@ -20,7 +20,10 @@ public final class SpriteUtil {
      * @param fileName Name of file from where the sprite is loaded.
      * @see #loadImage(String)
      * @return Sprite with <code>T</code> of <code>Image</code>.
+     * 
+     * @see com.panjohnny.pjgl.api.asset.SpriteRegistry#registerSprite(String, Object)
      */
+    @Deprecated
     public static Sprite<Image> createImageSprite(String id, String fileName) {
         try {
             return new Sprite<>(id, loadImage(fileName));
@@ -37,7 +40,7 @@ public final class SpriteUtil {
      * @param fileName Name of the file.
      * @return Loaded image.
      * @throws IOException When something goes wrong.
-     * @see #createImageSprite(String, String)
+     * @see com.panjohnny.pjgl.api.asset.SpriteRegistry#registerSprite(String, Object)
      */
     public static Image loadImage(String fileName) throws IOException {
         return ImageIO.read(Objects.requireNonNull(SpriteUtil.class.getResourceAsStream(fileName)));
