@@ -12,14 +12,15 @@ public class Example {
         PJGL pjgl = PJGL.getInstance();
         pjgl.start();
 
-        Sprite<Image> appleSprite = SpriteUtil.createImageSprite("apple", "/apple.png");
+        SpriteRegistry.registerSprite("apple", "/apple.png");
+
         GameObject apple = new GameObject() {
             public final Position position = addComponent(new Position(this, 10, 10));
             public final Size size = addComponent(new Size(this, 100, 100));
-            public final SpriteRenderer renderer = addComponent(new SpriteRenderer(this, appleSprite));
+            public final SpriteRenderer renderer = addComponent(new SpriteRenderer(this, "apple"));
         };
 
-        pjgl.getManager().addObject(apple);
+        pjgl.getManager().queueAddition(apple);
     }
 }
 ```
