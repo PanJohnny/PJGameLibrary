@@ -23,7 +23,7 @@ public final class SpriteRegistry {
 
     /**
      * Same as {@link #registerSprite(Sprite)}, but when registering typeof String automatically calls {@link #registerImageSprite(String, String)}.
-     * @implSpec Use only for {@link com.panjohnny.pjgl.adapt.desktop} adaptations (when Image is being supplied to texture). Supports classpath and filesystem.
+     * @apiNote Use only for {@link com.panjohnny.pjgl.adapt.desktop} adaptations (when Image is being supplied to texture). Supports classpath and filesystem.
      * @deprecated Please refrain from using this method as it does not differ from adaptation currently in use and only registers image sprites.
      * @see SpriteRegistry technical details
      */

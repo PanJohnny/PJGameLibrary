@@ -34,14 +34,15 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-
-        <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <inherited>false</inherited>
+                    <version>3.5.0</version>
                     <configuration>
-                        <aggregate>true</aggregate>
+                         <charset>UTF-8</charset>
+                        <failOnError>false</failOnError>
+                        <failOnWarnings>false</failOnWarnings>
                     </configuration>
                     <executions>
                         <execution>
@@ -54,7 +55,6 @@
                     </executions>
                 </plugin>
             </plugins>
-        </pluginManagement>
     </build>
 
     <repositories>
