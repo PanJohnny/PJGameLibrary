@@ -61,7 +61,6 @@ public class PJGLCore implements Runnable {
         PJGLEvents.VISIBLE.call();
     }
 
-    @SuppressWarnings("deprecation")
     private void loop() throws IOException {
         initialized = true;
 
@@ -123,6 +122,7 @@ public class PJGLCore implements Runnable {
 
         if (!interceptor.isIntercepted()) {
             PJGLEvents.PJGL_EXIT_EVENT.drop();
+            PJGLEvents.EXIT.call();
             return false;
         }
 

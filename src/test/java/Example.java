@@ -11,9 +11,8 @@ public class Example {
     public static void main(String[] args) {
         PJGL.init(new JDInitializer("Apple!"));
         PJGL pjgl = PJGL.getInstance();
-        pjgl.start();
 
-        SpriteRegistry.registerSprite("apple", "/apple.png");
+        SpriteRegistry.registerImageSprite("apple", "apple.png");
 
         GameObject apple = new GameObject() {
             public final Position position = addComponent(new Position(this, 10, 10));
@@ -21,6 +20,7 @@ public class Example {
             public final SpriteRenderer renderer = addComponent(new SpriteRenderer(this, "apple"));
         };
 
-        pjgl.getManager().queueAddition(apple);
+        pjgl.getManager().addObject(apple);
+        pjgl.start();
     }
 }

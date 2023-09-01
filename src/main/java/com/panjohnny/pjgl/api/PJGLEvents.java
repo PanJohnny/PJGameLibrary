@@ -26,7 +26,7 @@ public final class PJGLEvents {
     /**
      * Called every loop.
      *
-     * @deprecated Left here for polling events only!
+     * Should be just used for polling events.
      */
     @SuppressWarnings("all")
     public static final PJGLEvent.Empty LOOP = new PJGLEvent.Empty();
@@ -43,4 +43,9 @@ public final class PJGLEvents {
      * @see WindowAdapter#shouldClose()
      */
     public static final PJGLEvent<OperationInterceptor> PJGL_EXIT_EVENT = new PJGLEvent<>();
+
+    /**
+     * Called upon exiting the application.
+     */
+    public static final PJGLEvent.Empty EXIT = new PJGLOneUseEvent.Empty();
 }

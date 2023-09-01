@@ -17,9 +17,9 @@ public interface MouseAdapter {
         return !isKeyDown(keyCode);
     }
 
-    int getX();
+    double getX();
 
-    int getY();
+    double getY();
 
     boolean isOnWindow();
 }

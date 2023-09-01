@@ -87,12 +87,12 @@ public class JDMouse implements MouseInputListener, MouseAdapter {
     }
 
     @Override
-    public int getX() {
+    public double getX() {
         return x;
     }
 
     @Override
-    public int getY() {
+    public double getY() {
         return y;
     }
 
