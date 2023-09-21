@@ -1,9 +1,11 @@
 package com.panjohnny.pjgl.adapt.lwjgl;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.core.adapters.KeyboardAdapter;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallbackI;
 
+@Adaptation("lwjgl@pjgl")
 public class GLFWKeyboard implements KeyboardAdapter, GLFWKeyCallbackI {
     private final boolean[] keys;
 

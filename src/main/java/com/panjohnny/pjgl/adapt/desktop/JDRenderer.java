@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.adapt.desktop;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.api.asset.Sprite;
 import com.panjohnny.pjgl.api.camera.OrthographicCamera2D;
 import com.panjohnny.pjgl.api.object.GameObject;
@@ -17,6 +18,7 @@ import java.util.List;
  *
  * @author PanJohnny
  */
+@Adaptation("java-desktop@pjgl")
 public class JDRenderer extends Canvas implements RendererAdapter {
     private final OrthographicCamera2D camera;
 

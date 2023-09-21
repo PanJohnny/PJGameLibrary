@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.api;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.api.object.GameObjectManager;
 import com.panjohnny.pjgl.core.EngineOptions;
 import com.panjohnny.pjgl.core.PJGLCore;
@@ -152,5 +153,21 @@ public class PJGL {
      */
     public PJGLCore getCore() {
         return core;
+    }
+
+    /**
+     * Gets which adaptation PJGL is currently running. Uses reflections api. Should return string in the form of {@code adaptation-id@project} for example {@code java-desktop@pjgl}.
+     * In case of {@link Adaptation} annotation not present returns {@code unknown@unknown}.
+     *
+     * @return the value of {@link Adaptation} annotation on {@link RendererAdapter}
+     */
+    public String getAdaptation() {
+        Class<?> c = core.getRenderer().getClass();
+        if (c.isAnnotationPresent(Adaptation.class)) {
+
+            return c.getAnnotation(Adaptation.class).value();
+        }
+
+        return "unknown@unknown";
     }
 }

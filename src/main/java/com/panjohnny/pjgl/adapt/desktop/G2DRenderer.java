@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.adapt.desktop;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.api.object.Component;
 import com.panjohnny.pjgl.api.object.GameObject;
 
@@ -12,6 +13,7 @@ import java.util.function.Consumer;
  * @author PanJohnny
  */
 @SuppressWarnings("unused")
+@Adaptation("java-desktop@pjgl")
 public class G2DRenderer extends Component {
     private Consumer<Graphics2D> render;
 

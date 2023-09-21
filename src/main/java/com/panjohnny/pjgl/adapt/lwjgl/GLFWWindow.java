@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.adapt.lwjgl;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.api.util.Pair;
 import com.panjohnny.pjgl.core.PJGLCore;
 import com.panjohnny.pjgl.core.adapters.KeyboardAdapter;
@@ -22,6 +23,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
  *
  * @author PanJohnny
  */
+@Adaptation("lwjgl@pjgl")
 public class GLFWWindow implements WindowAdapter {
 
     private final String title;

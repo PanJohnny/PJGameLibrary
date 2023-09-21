@@ -35,6 +35,22 @@ public class GLFWExample {
             if (keyboard.isKeyDown(GLFW.GLFW_KEY_ESCAPE)) {
                 window.close();
             }
+
+            if (keyboard.isKeyDown(GLFW.GLFW_KEY_LEFT)) {
+                pjgl.getRenderer().getCamera().move(-1,0);
+            }
+
+            if (keyboard.isKeyDown(GLFW.GLFW_KEY_RIGHT)) {
+                pjgl.getRenderer().getCamera().move(1,0);
+            }
+
+            if (keyboard.isKeyDown(GLFW.GLFW_KEY_UP)) {
+                pjgl.getRenderer().getCamera().move(0,-1);
+            }
+
+            if (keyboard.isKeyDown(GLFW.GLFW_KEY_DOWN)) {
+                pjgl.getRenderer().getCamera().move(0,1);
+            }
         });
         pjgl.start();
     }

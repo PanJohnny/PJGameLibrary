@@ -24,4 +24,11 @@ public interface PJGLInitializer {
      * @return The renderer adapter implementation
      */
     RendererAdapter createRendererAdapter();
+
+    /**
+     * These identifiers are then accessible in {@link PJGL} and should be used when annotating adaptation specific classes.
+     *
+     * @return Returns an identifier in the format {@code adaptation-id@project} for example {@code java-desktop@pjgl}
+     */
+    String getIdentifier();
 }

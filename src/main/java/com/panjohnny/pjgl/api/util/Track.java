@@ -1,10 +1,12 @@
 package com.panjohnny.pjgl.api.util;
 
 import com.panjohnny.pjgl.api.PJGL;
+import com.panjohnny.pjgl.api.asset.img.SpriteUtil;
 
 import javax.sound.sampled.*;
-import java.io.IOException;
-import java.util.Objects;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * Class for playing music
@@ -28,12 +30,25 @@ public class Track {
             if (clip == null)
                 clip = AudioSystem.getClip();
 
-            clip.open(AudioSystem.getAudioInputStream(Objects.requireNonNull(PJGL.class.getResourceAsStream(file))));
+            try (InputStream resourceAsStream = SpriteUtil.class.getResourceAsStream(file)) {
+                if (resourceAsStream == null) {
+                    // Attempt to load as file
+                    File f = new File(file);
+                    if (f.exists()) {
+                        clip.open(AudioSystem.getAudioInputStream(f));
+                    } else {
+                        throw new FileNotFoundException("File/Resource not found");
+                    }
+                } else
+                    clip.open(AudioSystem.getAudioInputStream(resourceAsStream));
+            }
+
+
             clip.addLineListener(myLineEvent -> {
                 if (myLineEvent.getType() == LineEvent.Type.STOP)
                     clip.close();
             });
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+        } catch (Exception e) {
             PJGL.LOGGER.log(System.Logger.Level.ERROR, "Failed to load/open clip for track {0} {1}", getId(), toString());
             throw new TrackException(e);
         }

@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.adapt.desktop;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.core.PJGLCore;
 import com.panjohnny.pjgl.core.adapters.KeyboardAdapter;
 import com.panjohnny.pjgl.core.adapters.MouseAdapter;
@@ -12,6 +13,7 @@ import javax.swing.*;
  *
  * @author PanJohnny
  */
+@Adaptation("java-desktop@pjgl")
 public class JDWindow extends JFrame implements WindowAdapter {
     private final JDMouse mouse;
     private final JDKeyboard keyboard;

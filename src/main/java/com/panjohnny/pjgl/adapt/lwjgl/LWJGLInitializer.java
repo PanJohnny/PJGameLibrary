@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.adapt.lwjgl;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.api.PJGLEvents;
 import com.panjohnny.pjgl.api.PJGLInitializer;
 import com.panjohnny.pjgl.core.adapters.RendererAdapter;
@@ -11,6 +12,10 @@ import static com.panjohnny.pjgl.adapt.lwjgl.LWJGLConstants.WINDOW;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 
+/**
+ * An initializer for quickly starting your project with LWJGL adaptation
+ */
+@Adaptation("lwjgl@pjgl")
 public class LWJGLInitializer implements PJGLInitializer {
     private final String title;
     private final int width, height;
@@ -48,5 +53,10 @@ public class LWJGLInitializer implements PJGLInitializer {
     @Override
     public RendererAdapter createRendererAdapter() {
         return new OpenGLRenderer();
+    }
+
+    @Override
+    public String getIdentifier() {
+        return "lwjgl@pjgl";
     }
 }

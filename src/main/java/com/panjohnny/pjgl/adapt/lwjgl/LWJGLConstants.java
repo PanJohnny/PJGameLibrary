@@ -1,6 +1,9 @@
 package com.panjohnny.pjgl.adapt.lwjgl;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
+
 @SuppressWarnings("unused")
+@Adaptation("lwjgl@pjgl")
 public class LWJGLConstants {
     public static final LWJGLConstant<Long> WINDOW = new LWJGLConstant<>();
 

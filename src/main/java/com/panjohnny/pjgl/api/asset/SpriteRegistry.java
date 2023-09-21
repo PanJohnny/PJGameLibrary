@@ -3,6 +3,9 @@ package com.panjohnny.pjgl.api.asset;
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.asset.img.SpriteUtil;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -61,6 +64,26 @@ public final class SpriteRegistry {
      */
     public static void registerTextureSprite(String id, String file) {
         registerSprite(new Sprite<>(id, SpriteUtil.loadTexture(file)));
+    }
+
+    /**
+     * Creates temporary texture sprite if someone is using G2D renderer. This is experimental feature and would be reworked. Applies only the first frame due to technical limitations.
+     */
+    public static void createTemporaryTextureSprite(Object object, BufferedImage image) {
+        try {
+            File file = new File("./.pjgl-temp/", object.toString() + "-render.png");
+            if (!file.exists() && !file.mkdirs() && !file.createNewFile()) {
+                PJGL.LOGGER.log(System.Logger.Level.WARNING, "failed to create temp texture sprite, file does not exist and cannot be created");
+                return;
+            }
+
+            ImageIO.write(image, "PNG", file);
+            PJGL.LOGGER.log(System.Logger.Level.WARNING, "Used G2D to render one object, please be aware that this only happens on the first render due to limitations. Change adaptation OR rework your renderer.");
+            registerTextureSprite(object.toString(), file.getAbsolutePath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public static void registerSprite(Sprite<?> sprite) {

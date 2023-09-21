@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.adapt.lwjgl;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.core.adapters.MouseAdapter;
 import org.lwjgl.BufferUtils;
 
@@ -13,6 +14,7 @@ import static org.lwjgl.glfw.GLFW.*;
  *
  * @author PanJohnny
  */
+@Adaptation("lwjgl@pjgl")
 public class GLFWMouse implements MouseAdapter {
     @Override
     public boolean isKeyDown(int keyCode) {

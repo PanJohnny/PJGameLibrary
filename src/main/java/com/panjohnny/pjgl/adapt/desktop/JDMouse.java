@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.adapt.desktop;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.event.PJGLEvent;
 import com.panjohnny.pjgl.api.object.GameObject;
@@ -14,6 +15,7 @@ import java.awt.event.MouseEvent;
  *
  * @author PanJohnny
  */
+@Adaptation("java-desktop@pjgl")
 public class JDMouse implements MouseInputListener, MouseAdapter {
     public final PJGLEvent<MouseClicksObjectData> onObjectClick = new PJGLEvent<>();
     private final boolean[] keys = new boolean[3];

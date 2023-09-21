@@ -1,5 +1,6 @@
 package com.panjohnny.pjgl.adapt.desktop;
 
+import com.panjohnny.pjgl.adapt.Adaptation;
 import com.panjohnny.pjgl.core.adapters.KeyboardAdapter;
 
 import java.awt.event.KeyEvent;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
  * @see KeyEvent
  * @author PanJohnny
  */
+@Adaptation("java-desktop@pjgl")
 public class JDKeyboard implements KeyListener, KeyboardAdapter {
     private final ArrayList<Character> chars = new ArrayList<>();
     private final ArrayList<Integer> codes = new ArrayList<>();
