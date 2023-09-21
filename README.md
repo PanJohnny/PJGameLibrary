@@ -28,6 +28,10 @@ public class Example {
 
 ## Adaptability
 
-This project is free to be adapted by anyone. I stepped down from handling graphics using lwjgl's openGL, so I only implemented the java desktop adapter. I created this in a way that makes it possible to plug in lwjgl.
+This project is free to be adapted by anyone.
+
+Currently you can use these two:
+ - Java Desktop - awt, swing
+ - LWJGL
 
 You can read more information at the wiki, or ask me directly. [@PanJohnny1](https://twitter.com/PanJohnny1)
