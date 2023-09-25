@@ -1,13 +1,15 @@
 package com.panjohnny.pjgl.api.asset;
 
 import com.panjohnny.pjgl.api.PJGL;
-import com.panjohnny.pjgl.api.asset.img.SpriteUtil;
+import com.panjohnny.pjgl.api.asset.atlas.TextureAtlas;
+import com.panjohnny.pjgl.api.util.SpriteUtil;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <h1>Sprite registration</h1>
@@ -50,6 +52,32 @@ public final class SpriteRegistry {
     }
 
     /**
+     * <p>Registers Texture Sprite as atlas - for <b>OpenGL</b>. Supports loading from filesystem.</p>
+     * <p>Loads texture using following parameters:</p>
+     * <ul>
+     *     <li>GL_TEXTURE_WRAP_S, GL_REPEAT</li>
+     *     <li>GL_TEXTURE_WRAP_T, GL_REPEAT</li>
+     *     <li>GL_TEXTURE_MIN_FILTER, GL_NEAREST</li>
+     *     <li>GL_TEXTURE_MAG_FILTER, GL_NEAREST</li>
+     * </ul>
+     * <p>You can use {@link SpriteUtil#loadTexture(String, int, int, int, int, java.util.function.BiConsumer)} to load your own and change few parameters, then register it using {@link #registerSprite(Sprite)} with {@code Sprite<Integer>}.</p>
+     * @see SpriteRegistry technical details
+     * @see SpriteUtil#loadTexture(String, java.util.function.BiConsumer) default texture parameters
+     * @return TextureAtlas representing the sprite atlas
+     */
+    public static TextureAtlas registerTextureSpriteAsAtlas(String id, String file) {
+        AtomicInteger width = new AtomicInteger();
+        AtomicInteger height = new AtomicInteger();
+
+        int texture = SpriteUtil.loadTexture(file, (w, h) -> {
+            width.set(w);
+            height.set(h);
+        });
+
+        return new TextureAtlas(id, texture, width.get(), height.get());
+    }
+
+    /**
      * <p>Registers Texture Sprite - for <b>OpenGL</b>. Supports loading from filesystem.</p>
      * <p>Loads texture using following parameters:</p>
      * <ul>
@@ -58,12 +86,12 @@ public final class SpriteRegistry {
      *     <li>GL_TEXTURE_MIN_FILTER, GL_NEAREST</li>
      *     <li>GL_TEXTURE_MAG_FILTER, GL_NEAREST</li>
      * </ul>
-     * <p>You can use {@link SpriteUtil#loadTexture(String, int, int, int, int)} to load your own and change few parameters, then register it using {@link #registerSprite(Sprite)} with {@code Sprite<Integer>}.</p>
+     * <p>You can use {@link SpriteUtil#loadTexture(String, int, int, int, int, java.util.function.BiConsumer)} to load your own and change few parameters, then register it using {@link #registerSprite(Sprite)} with {@code Sprite<Integer>}.</p>
      * @see SpriteRegistry technical details
-     * @see SpriteUtil#loadTexture(String) default texture parameters
+     * @see SpriteUtil#loadTexture(String, java.util.function.BiConsumer) default texture parameters
      */
     public static void registerTextureSprite(String id, String file) {
-        registerSprite(new Sprite<>(id, SpriteUtil.loadTexture(file)));
+        registerSprite(new Sprite<>(id, SpriteUtil.loadTexture(file, null)));
     }
 
     /**

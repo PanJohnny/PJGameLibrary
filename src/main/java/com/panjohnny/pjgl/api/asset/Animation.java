@@ -4,17 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.panjohnny.pjgl.api.PJGL;
-import com.panjohnny.pjgl.api.asset.img.SpriteUtil;
+import com.panjohnny.pjgl.api.util.FileUtil;
 
-import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.function.BiConsumer;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class Animation {
@@ -78,7 +78,10 @@ public class Animation {
             AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
             image = op.filter(image, null);
 
-            frames1.add(new Frame(new Sprite<>(frame.sprite().getID() + "_flipped", image), frame.duration()));
+            Sprite<?> sprite = new Sprite<>(frame.sprite().getID() + "_flipped", image);
+            frames1.add(new Frame(sprite, frame.duration()));
+
+            SpriteRegistry.registerSprite(sprite);
         }
 
         return new Animation(id + "_flipped", frames1);
@@ -189,7 +192,9 @@ public class Animation {
     }
 
     /**
-     * <h1>JSON Format:</h1>
+     * Method for loading animation from JSON file
+     *
+     * <h2>JSON Format:</h2>
      * <pre>
      * {
      *   "id": "player_front",
@@ -210,7 +215,7 @@ public class Animation {
      * }
      * </pre>
      *
-     * <h2>Exceptions:</h2>
+     * <h3>Exceptions:</h3>
      * <ul>
      *     <li>
      *         folder is optional
@@ -225,11 +230,15 @@ public class Animation {
      *         when individual only durations are required (frameDuration not, ignored if provided)
      *     </li>
      * </ul>
+     *
+     * <b>Currently does not support atlas textures</b>
+     *
      * @see TimingMode
+     * @param file Path to JSON file
+     * @param spriteRegistryMethod Consumer accepting (id, file) parameters for example: {@link SpriteRegistry#registerTextureSprite(String, String)} or {@link SpriteRegistry#registerImageSprite(String, String)}
      */
-    @SuppressWarnings("deprecation")
-    public static Animation loadFromJson(String file) throws AnimationBuilder.AnimationBuilderException {
-        JsonObject json = JsonParser.parseReader(new InputStreamReader(Objects.requireNonNull(PJGL.class.getResourceAsStream(file)))).getAsJsonObject();
+    public static Animation loadFromJson(String file, BiConsumer<String, String> spriteRegistryMethod) throws AnimationBuilder.AnimationBuilderException, FileNotFoundException {
+        JsonObject json = JsonParser.parseReader(new InputStreamReader(FileUtil.resolveFileOrResource(file))).getAsJsonObject();
 
         // Run checks.
         check(json.has("id"), "mandatory argument not provided");
@@ -238,7 +247,7 @@ public class Animation {
         check(json.has("order"), "mandatory argument not provided");
         check(json.get("order").getAsJsonArray().size() > 0);
 
-        String folder = new File(file).getParent();
+        String folder = new File(file).getParent() + "/"; // folder needs to end with / when merging strings later on
         String id = json.get("id").getAsString();
 
         if (json.has("folder")) {
@@ -277,10 +286,12 @@ public class Animation {
         // Build it!
         AnimationBuilder builder = new AnimationBuilder(id);
 
-        List<Sprite<Image>> images = new ArrayList<>();
+        List<Sprite<?>> images = new ArrayList<>();
 
         for (int i = 0; i < frames.length; i++) {
-            images.add(SpriteUtil.createImageSprite(id + "_frame_" + i, folder + frames[i]));
+            String spriteId = id + "_frame_" + i;
+            spriteRegistryMethod.accept(spriteId, folder + frames[i]);
+            images.add(SpriteRegistry.getSprite(spriteId));
         }
 
         builder.frames(images.toArray(Sprite[]::new));

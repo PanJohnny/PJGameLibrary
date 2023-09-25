@@ -2,6 +2,7 @@ package com.panjohnny.pjgl.api.object.components;
 
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.asset.Sprite;
+import com.panjohnny.pjgl.api.asset.atlas.AtlasRegion;
 import com.panjohnny.pjgl.api.asset.SpriteRegistry;
 import com.panjohnny.pjgl.api.object.Component;
 import com.panjohnny.pjgl.api.object.GameObject;
@@ -25,6 +26,14 @@ public class SpriteRenderer extends Component {
     public SpriteRenderer(GameObject owner, Sprite<?> sprite) {
         super(owner);
         this.sprite = sprite;
+    }
+
+    /**
+     * Sprite partitions are not registered, so passing them in directly is the right way.
+     */
+    public SpriteRenderer(GameObject owner, AtlasRegion partition) {
+        super(owner);
+        this.sprite = partition;
     }
 
     public SpriteRenderer(GameObject owner, String spriteId) {

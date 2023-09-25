@@ -1,12 +1,14 @@
 package com.panjohnny.pjgl.api.asset;
 
+import com.panjohnny.pjgl.api.util.SpriteUtil;
+
 import java.io.Serializable;
 
 /**
  * Implementation of {@link Drawable} that should be implemented by renderer adapter.
  *
  * @see com.panjohnny.pjgl.api.object.components.SpriteRenderer
- * @see com.panjohnny.pjgl.api.asset.img.SpriteUtil
+ * @see SpriteUtil
  * @param <T> Type of sprite (type of data it holds).
  *
  * @author PanJohnny

@@ -1,12 +1,8 @@
 package com.panjohnny.pjgl.api.util;
 
 import com.panjohnny.pjgl.api.PJGL;
-import com.panjohnny.pjgl.api.asset.img.SpriteUtil;
 
 import javax.sound.sampled.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 /**
  * Class for playing music
@@ -30,19 +26,7 @@ public class Track {
             if (clip == null)
                 clip = AudioSystem.getClip();
 
-            try (InputStream resourceAsStream = SpriteUtil.class.getResourceAsStream(file)) {
-                if (resourceAsStream == null) {
-                    // Attempt to load as file
-                    File f = new File(file);
-                    if (f.exists()) {
-                        clip.open(AudioSystem.getAudioInputStream(f));
-                    } else {
-                        throw new FileNotFoundException("File/Resource not found");
-                    }
-                } else
-                    clip.open(AudioSystem.getAudioInputStream(resourceAsStream));
-            }
-
+            clip.open(AudioSystem.getAudioInputStream(FileUtil.resolveFileOrResource(file)));
 
             clip.addLineListener(myLineEvent -> {
                 if (myLineEvent.getType() == LineEvent.Type.STOP)

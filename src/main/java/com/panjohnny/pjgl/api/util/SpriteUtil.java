@@ -1,4 +1,4 @@
-package com.panjohnny.pjgl.api.asset.img;
+package com.panjohnny.pjgl.api.util;
 
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.asset.Sprite;
@@ -7,6 +7,7 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.stb.STBImage;
 
+import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+import java.util.function.BiConsumer;
 
 /**
  * Utility for handling sprites.
@@ -80,10 +82,10 @@ public final class SpriteUtil {
      *
      * @param file path to file
      * @return texture id
-     * @see #loadTexture(String, int, int, int, int)
+     * @see #loadTexture(String, int, int, int, int, BiConsumer)
      */
-    public static int loadTexture(String file) {
-        return loadTexture(file, GL11.GL_REPEAT, GL11.GL_REPEAT, GL11.GL_NEAREST, GL11.GL_NEAREST);
+    public static int loadTexture(String file, @Nullable BiConsumer<Integer, Integer> sizeConsumer) {
+        return loadTexture(file, GL11.GL_REPEAT, GL11.GL_REPEAT, GL11.GL_NEAREST, GL11.GL_NEAREST, sizeConsumer);
     }
     /**
      * Loads texture from filesystem using STBImage
@@ -94,7 +96,7 @@ public final class SpriteUtil {
      * @param wrap_t GL_TEXTURE_WRAP_T
      * @return texture id
      */
-    public static int loadTexture(String file, int wrap_s, int wrap_t, int min_filter, int mag_filter) {
+    public static int loadTexture(String file, int wrap_s, int wrap_t, int min_filter, int mag_filter, @Nullable BiConsumer<Integer, Integer> sizeConsumer) {
         IntBuffer width = BufferUtils.createIntBuffer(1);
         IntBuffer height = BufferUtils.createIntBuffer(1);
         IntBuffer channels = BufferUtils.createIntBuffer(1);
@@ -113,8 +115,14 @@ public final class SpriteUtil {
         int textureId = GL11.glGenTextures();
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureId);
 
+        int w = width.get();
+        int h = height.get();
+
+        if (sizeConsumer != null)
+            sizeConsumer.accept(w, h);
+
         // Upload the image data to the texture
-        GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width.get(), height.get(), 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, imageBuffer);
+        GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, w, h, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, imageBuffer);
 
         // Set texture parameters
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, wrap_s);

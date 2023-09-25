@@ -5,6 +5,7 @@ import com.panjohnny.pjgl.adapt.desktop.G2DRenderer;
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.PJGLEvents;
 import com.panjohnny.pjgl.api.asset.Sprite;
+import com.panjohnny.pjgl.api.asset.atlas.AtlasRegion;
 import com.panjohnny.pjgl.api.asset.SpriteRegistry;
 import com.panjohnny.pjgl.api.camera.OrthographicCamera2D;
 import com.panjohnny.pjgl.api.object.GameObject;
@@ -39,6 +40,7 @@ import static org.lwjgl.opengl.GL11C.glEnable;
 public class OpenGLRenderer implements RendererAdapter {
 
     private OpenGLOrthographicCamera cam;
+
     public OpenGLRenderer() {
         PJGLEvents.VISIBLE.listen(() -> {
             glEnable(GL_TEXTURE_2D);
@@ -68,34 +70,76 @@ public class OpenGLRenderer implements RendererAdapter {
                     int texture = (int) renderer.getSprite().getImage();
                     glBindTexture(GL_TEXTURE_2D, texture);
 
-                    // Set up the vertices and texture coordinates
-                    float x = position.x;
-                    float y = position.y;
-                    float width = size.width;
-                    float height = size.height;
+                    if (renderer.getSprite() instanceof AtlasRegion reg) {
+                        float x = position.x;
+                        float y = position.y;
+                        float width = size.width;
+                        float height = size.height;
 
-                    // Render the object using appropriate OpenGL calls
-                    glBegin(GL_TRIANGLES);
+                        // Define the position and size of the region you want to render within the atlas
+                        float region_x = reg.getOffsetX();  // X-coordinate of the region within the atlas
+                        float region_y = reg.getOffsetY();   // Y-coordinate of the region within the atlas
+                        float region_width = reg.getWidth();  // Width of the region
+                        float region_height = reg.getHeight(); // Height of the region
 
-                    glTexCoord2f(0.0f, 0.0f);
-                    glVertex2f(x, y);
+                        // Calculate the texture coordinates for the region within the atlas
+                        float tex_x1 = region_x / reg.getAtlas().getWidth();
+                        float tex_x2 = (region_x + region_width) / reg.getAtlas().getWidth();
+                        float tex_y1 = region_y / reg.getAtlas().getHeight();
+                        float tex_y2 = (region_y + region_height) / reg.getAtlas().getHeight();
 
-                    glTexCoord2f(1.0f, 0.0f);
-                    glVertex2f(x + width, y);
+                        glBegin(GL_TRIANGLES);
 
-                    glTexCoord2f(1.0f, 1.0f);
-                    glVertex2f(x + width, y + height);
+                        glTexCoord2f(tex_x1, tex_y1);
+                        glVertex2f(x, y);
 
-                    glTexCoord2f(1.0f, 1.0f);
-                    glVertex2f(x + width, y + height);
+                        glTexCoord2f(tex_x2, tex_y1);
+                        glVertex2f(x + width, y);
 
-                    glTexCoord2f(0.0f, 1.0f);
-                    glVertex2f(x, y + height);
+                        glTexCoord2f(tex_x2, tex_y2);
+                        glVertex2f(x + width, y + height);
 
-                    glTexCoord2f(0.0f, 0.0f);
-                    glVertex2f(x, y);
+                        glTexCoord2f(tex_x2, tex_y2);
+                        glVertex2f(x + width, y + height);
 
-                    glEnd();
+                        glTexCoord2f(tex_x1, tex_y2);
+                        glVertex2f(x, y + height);
+
+                        glTexCoord2f(tex_x1, tex_y1);
+                        glVertex2f(x, y);
+
+                        glEnd();
+                    } else {
+
+                        // Set up the vertices and texture coordinates
+                        float x = position.x;
+                        float y = position.y;
+                        float width = size.width;
+                        float height = size.height;
+
+                        // Render the object using appropriate OpenGL calls
+                        glBegin(GL_TRIANGLES);
+
+                        glTexCoord2f(0.0f, 0.0f);
+                        glVertex2f(x, y);
+
+                        glTexCoord2f(1.0f, 0.0f);
+                        glVertex2f(x + width, y);
+
+                        glTexCoord2f(1.0f, 1.0f);
+                        glVertex2f(x + width, y + height);
+
+                        glTexCoord2f(1.0f, 1.0f);
+                        glVertex2f(x + width, y + height);
+
+                        glTexCoord2f(0.0f, 1.0f);
+                        glVertex2f(x, y + height);
+
+                        glTexCoord2f(0.0f, 0.0f);
+                        glVertex2f(x, y);
+
+                        glEnd();
+                    }
                 } else if (g2d != null && g2d.enabled) {
                     float width = size.width;
                     float height = size.height;
