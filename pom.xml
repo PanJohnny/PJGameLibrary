@@ -6,7 +6,7 @@
 
     <groupId>com.panjohnny.pjgl</groupId>
     <artifactId>PJGL</artifactId>
-    <version>v0.4.0-alpha</version>
+    <version>v0.4.4-alpha</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -46,13 +46,32 @@
                     </configuration>
                     <executions>
                         <execution>
-                            <id>aggregate</id>
+                            <id>attach-javadocs</id>
                             <goals>
-                                <goal>aggregate-jar</goal>
+                                <goal>jar</goal>
                             </goals>
-                            <phase>package</phase>
                         </execution>
                     </executions>
+                </plugin>
+
+                <plugin>  <!-- Create sources.jar -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
                 </plugin>
             </plugins>
     </build>
