@@ -1,6 +1,7 @@
 # PanJohnny's Game Library
 [![](https://jitpack.io/v/PanJohnny/PJGameLibrary.svg)](https://jitpack.io/#PanJohnny/PJGameLibrary)
 [![](https://img.shields.io/badge/Javadocs-Online-informational)](https://panjohnny.github.io/PJGameLibrary)
+[![](https://jitci.com/gh/PanJohnny/PJGameLibrary/svg)](https://jitci.com/gh/PanJohnny/PJGameLibrary)
 
 A game library for making simple games in java
 
