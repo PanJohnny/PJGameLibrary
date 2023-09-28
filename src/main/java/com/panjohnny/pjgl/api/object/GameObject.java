@@ -20,7 +20,7 @@ public abstract class GameObject implements Serializable {
     /**
      * A linked list of {@link Component} objects making up the behavior of the game object.
      */
-    protected final LinkedList<Component> components;
+    public final LinkedList<Component> components;
 
     /**
      * Constructs a new GameObject instance.
