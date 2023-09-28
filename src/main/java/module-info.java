@@ -4,6 +4,7 @@ open module com.panjohnny.pjgl {
     requires org.lwjgl.glfw;
     requires org.lwjgl.opengl;
     requires com.google.gson;
+    requires org.lwjgl.stb;
 
     exports com.panjohnny.pjgl.adapt;
     exports com.panjohnny.pjgl.adapt.desktop;

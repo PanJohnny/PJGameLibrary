@@ -7,7 +7,6 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.stb.STBImage;
 
-import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
@@ -84,7 +83,7 @@ public final class SpriteUtil {
      * @return texture id
      * @see #loadTexture(String, int, int, int, int, BiConsumer)
      */
-    public static int loadTexture(String file, @Nullable BiConsumer<Integer, Integer> sizeConsumer) {
+    public static int loadTexture(String file, BiConsumer<Integer, Integer> sizeConsumer) {
         return loadTexture(file, GL11.GL_REPEAT, GL11.GL_REPEAT, GL11.GL_NEAREST, GL11.GL_NEAREST, sizeConsumer);
     }
     /**
@@ -96,7 +95,7 @@ public final class SpriteUtil {
      * @param wrap_t GL_TEXTURE_WRAP_T
      * @return texture id
      */
-    public static int loadTexture(String file, int wrap_s, int wrap_t, int min_filter, int mag_filter, @Nullable BiConsumer<Integer, Integer> sizeConsumer) {
+    public static int loadTexture(String file, int wrap_s, int wrap_t, int min_filter, int mag_filter, BiConsumer<Integer, Integer> sizeConsumer) {
         IntBuffer width = BufferUtils.createIntBuffer(1);
         IntBuffer height = BufferUtils.createIntBuffer(1);
         IntBuffer channels = BufferUtils.createIntBuffer(1);

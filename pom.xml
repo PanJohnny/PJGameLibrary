@@ -6,9 +6,10 @@
 
     <groupId>com.panjohnny.pjgl</groupId>
     <artifactId>PJGL</artifactId>
-    <version>v0.4.4-alpha</version>
+    <version>0.4.3-alpha</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <lwjgl.version>3.3.2</lwjgl.version>
@@ -152,6 +153,11 @@
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl-stb</artifactId>
             <classifier>${lwjgl.natives}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
         </dependency>
     </dependencies>
 
