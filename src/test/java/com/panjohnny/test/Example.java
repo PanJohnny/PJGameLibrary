@@ -1,3 +1,5 @@
+package com.panjohnny.test;
+
 import com.panjohnny.pjgl.adapt.desktop.JDInitializer;
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.asset.SpriteRegistry;

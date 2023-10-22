@@ -8,6 +8,7 @@ import com.panjohnny.pjgl.core.adapters.RendererAdapter;
 import com.panjohnny.pjgl.core.adapters.WindowAdapter;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Core class of the entire project.
@@ -66,18 +67,18 @@ public class PJGLCore implements Runnable {
 
         recalculateFPS();
 
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         int frameCounter = 0;
-        long frameCounterStart = System.currentTimeMillis();
-        long frameCounterEnd = frameCounterStart + 1000L;
+        long frameCounterStart = System.nanoTime();
+
+        final long oneSecond = TimeUnit.SECONDS.toNanos(1);
 
         while (shouldRun()) {
             PJGLEvents.LOOP.call();
 
-            if (System.currentTimeMillis() >= frameCounterEnd) {
-                frameCounterStart = System.currentTimeMillis();
-                frameCounterEnd = frameCounterStart + 1000L;
+            if (System.nanoTime() - frameCounterStart >= oneSecond) {
+                frameCounterStart = System.nanoTime();
 
                 lastFPS = frameCounter;
 
@@ -91,9 +92,9 @@ public class PJGLCore implements Runnable {
                     PJGL.LOGGER.log(System.Logger.Level.INFO, "FPS {0}", lastFPS);
             }
 
-            if (System.currentTimeMillis() >= startTime + frameSkip) {
+            if (System.nanoTime() - startTime >= frameSkip) {
                 frameCounter++;
-                long endTime = System.currentTimeMillis();
+                long endTime = System.nanoTime();
                 long elapsedTime = endTime - startTime;
                 startTime = endTime;
 
@@ -109,7 +110,7 @@ public class PJGLCore implements Runnable {
     }
 
     public void recalculateFPS() {
-        frameSkip = (1000D / fpsSetting);
+        frameSkip = (1_000_000_000d / fpsSetting);
     }
 
 

@@ -1,3 +1,5 @@
+package com.panjohnny.test;
+
 import com.panjohnny.pjgl.adapt.lwjgl.GLFWKeyboard;
 import com.panjohnny.pjgl.adapt.lwjgl.GLFWWindow;
 import com.panjohnny.pjgl.adapt.lwjgl.LWJGLInitializer;
@@ -12,6 +14,7 @@ import com.panjohnny.pjgl.api.object.components.Animator;
 import com.panjohnny.pjgl.api.object.components.Position;
 import com.panjohnny.pjgl.api.object.components.Size;
 import com.panjohnny.pjgl.api.object.components.SpriteRenderer;
+import com.panjohnny.pjgl.core.EngineOptions;
 import org.lwjgl.glfw.GLFW;
 
 import java.io.FileNotFoundException;
@@ -19,6 +22,7 @@ import java.io.FileNotFoundException;
 @SuppressWarnings("unused")
 public class GLFWExample {
     public static void main(String[] args) {
+        EngineOptions.logFPS = true;
         PJGL.init(new LWJGLInitializer("Apple!", 750, 750));
         PJGL pjgl = PJGL.getInstance();
 

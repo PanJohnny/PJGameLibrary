@@ -30,7 +30,7 @@ public class Animation {
     private int lastFrame = 0;
     public Frame getFrame() {
         Frame last = frames.get(lastFrame);
-        if (lastTime + last.duration * 1_000_000L <= System.nanoTime()) {
+        if (System.nanoTime() - lastTime >= last.duration * 1_000_000L ) {
             // Switch frames
             lastFrame++;
             if (lastFrame >= frames.size()) {
