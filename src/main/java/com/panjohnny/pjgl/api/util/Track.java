@@ -5,7 +5,10 @@ import com.panjohnny.pjgl.api.PJGL;
 import javax.sound.sampled.*;
 
 /**
- * Class for playing music
+ * Class for playing music, well umm not OpenAL tho... Coming soon?
+ * <aside>This class uses {@link javax.sound.sampled}.</aside>
+ *
+ * @author PanJohnny
  */
 @SuppressWarnings("unused")
 public class Track {

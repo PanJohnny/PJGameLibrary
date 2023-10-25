@@ -2,6 +2,9 @@ package com.panjohnny.pjgl.api.asset.atlas;
 
 import com.panjohnny.pjgl.api.asset.Sprite;
 
+/**
+ * @author PanJohnny
+ */
 public class AtlasRegion extends Sprite<Integer> {
     private final float offsetX;
     private final float offsetY;

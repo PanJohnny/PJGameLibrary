@@ -2,6 +2,12 @@ package com.panjohnny.pjgl.api.asset.atlas;
 
 import com.panjohnny.pjgl.api.asset.Sprite;
 
+/**
+ * Texture atlases are used to optimize rendering.
+ *
+ * @apiNote Only for LWJGL
+ * @author PanJohnny
+ */
 public class TextureAtlas extends Sprite<Integer> {
     private final int width, height;
     public TextureAtlas(String id, Integer image, int width, int height) {

@@ -3,7 +3,8 @@ package com.panjohnny.pjgl.api.camera;
 /**
  * Simple orthographic camera implementation. Override {@link #apply(Object)} to apply effects.
  *
- * @since v0.3.7-alpha
+ * @since 0.3.7-alpha
+ * @author PanJohnny
  */
 @SuppressWarnings("unused")
 public abstract class OrthographicCamera2D {

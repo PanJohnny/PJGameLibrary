@@ -2,6 +2,10 @@ package com.panjohnny.pjgl.adapt.lwjgl;
 
 import com.panjohnny.pjgl.adapt.Adaptation;
 
+/**
+ * Provides constants shared across this adaptation.
+ * @author PanJohnny
+ */
 @SuppressWarnings("unused")
 @Adaptation("lwjgl@pjgl")
 public class LWJGLConstants {

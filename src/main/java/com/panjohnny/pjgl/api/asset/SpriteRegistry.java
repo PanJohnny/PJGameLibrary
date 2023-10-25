@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <h2>Texture Sprites</h2>
  * <p>These sprites contain integer representing OpenGL texture.</p>
  * <p>Register them with {@link #registerTextureSprite(String, String)}. This method supports loading from filesystem.</p>
+ * @author PanJohnny
  */
 @SuppressWarnings("unused")
 public final class SpriteRegistry {

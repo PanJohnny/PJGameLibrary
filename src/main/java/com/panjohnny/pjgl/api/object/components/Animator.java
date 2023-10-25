@@ -9,6 +9,8 @@ import java.util.Objects;
 
 /**
  * Component that handles animations. Requires SpriteRenderer to be present on the owner.
+ *
+ * @author PanJohnny
  */
 @SuppressWarnings("unused")
 public class Animator extends Component {

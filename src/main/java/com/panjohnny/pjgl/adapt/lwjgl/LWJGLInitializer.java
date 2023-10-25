@@ -13,7 +13,8 @@ import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 
 /**
- * An initializer for quickly starting your project with LWJGL adaptation
+ * An initializer for quickly starting your project with LWJGL adaptation.
+ * @author PanJohnny
  */
 @Adaptation("lwjgl@pjgl")
 public class LWJGLInitializer implements PJGLInitializer {

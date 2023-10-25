@@ -6,6 +6,11 @@ import com.panjohnny.pjgl.core.adapters.KeyboardAdapter;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallbackI;
 
+/**
+ * Keyboard implementation using GLFW.
+ *
+ * @author PanJohnny
+ */
 @Adaptation("lwjgl@pjgl")
 public class GLFWKeyboard implements KeyboardAdapter, GLFWKeyCallbackI {
     private final boolean[] keys;

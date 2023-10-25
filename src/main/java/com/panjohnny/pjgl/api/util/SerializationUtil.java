@@ -6,6 +6,11 @@ import com.panjohnny.pjgl.api.object.components.SpriteRenderer;
 import java.io.*;
 import java.util.Base64;
 
+/**
+ * I heard there was java serialization, so here I am... Maybe networking someday?
+ *
+ * @author PanJohnny
+ */
 @SuppressWarnings("unused")
 public final class SerializationUtil {
     /**

@@ -5,8 +5,8 @@ import com.panjohnny.pjgl.adapt.desktop.G2DRenderer;
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.PJGLEvents;
 import com.panjohnny.pjgl.api.asset.Sprite;
-import com.panjohnny.pjgl.api.asset.atlas.AtlasRegion;
 import com.panjohnny.pjgl.api.asset.SpriteRegistry;
+import com.panjohnny.pjgl.api.asset.atlas.AtlasRegion;
 import com.panjohnny.pjgl.api.camera.OrthographicCamera2D;
 import com.panjohnny.pjgl.api.object.GameObject;
 import com.panjohnny.pjgl.api.object.components.Position;
@@ -34,7 +34,21 @@ import static org.lwjgl.opengl.GL11C.glBlendFunc;
 import static org.lwjgl.opengl.GL11C.glEnable;
 
 /**
+ * <h1>Rendering with OpenGL</h1>
+ * <h2>Default states</h2>
+ * <ul>
+ *     <li>{@code GL_TEXTURE_2D}</li>
+ *     <li>{@code GL_TRIANGLES}</li>
+ *     <li>{@code GL_BLEND}</li>
+ * </ul>
+ * <aside>The blend function used is {@code GL_ONE_MINUS_SRC_ALPHA}.</aside>
+ * <h2>Rendering</h2>
+ * <p>Uses orthographic view to render objects. Supports rendering {@link com.panjohnny.pjgl.api.asset.atlas.TextureAtlas} and {@link Sprite} of type Integer.</p>
+ * <aside>Provides minimal functionality to {@link G2DRenderer} as: on first render it attempts to draw the result of render function, the result is saved as an temporary file and the render is never repeated.</aside>
+ *
+ * @apiNote This renderer is really simple and I advise you to check the source code. If you are not happy with the result and capabilities create your own.
  * @author PanJohnny
+ * @see OpenGLOrthographicCamera
  */
 @Adaptation("lwjgl@pjgl")
 public class OpenGLRenderer implements RendererAdapter {
@@ -191,6 +205,20 @@ public class OpenGLRenderer implements RendererAdapter {
         return cam;
     }
 
+    /**
+     * Provides the functionality as a orthographic camera. Uses the following functions:
+     * <pre>
+     * {@code
+     * glMatrixMode(GL_PROJECTION);
+     * glLoadIdentity();
+     * glViewport(0, 0, windowWidth, windowHeight);
+     * glOrtho(0.0f, windowWidth, windowHeight, 0.0f, 0.0f, 1.0f);
+     * glTranslated(transformX, transformY, 0);
+     * glScaled(scaleX, scaleY, 0);
+     * }
+     * </pre>
+     * @author PanJohnny
+     */
     public static class OpenGLOrthographicCamera extends OrthographicCamera2D {
 
         @Override

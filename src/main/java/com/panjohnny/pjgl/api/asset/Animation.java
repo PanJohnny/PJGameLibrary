@@ -16,6 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+/**
+ * Create animations!
+ *
+ * @see Animation#loadFromJson(String, BiConsumer)
+ * @see AnimationBuilder
+ *
+ * @author PanJohnny
+ */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class Animation {
     private final String id;

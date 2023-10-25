@@ -5,6 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+/**
+ * Utility to resolve the hardest question of java programmer. To resource, or to file? Obviously it depends on the use case, but I need to write some silly stuff somewhere eh.
+ * @author PanJohnny
+ */
 public final class FileUtil {
     public static InputStream resolveFileOrResource(String path) throws FileNotFoundException{
         // attempt to load resource
