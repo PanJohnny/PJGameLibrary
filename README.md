@@ -35,4 +35,4 @@ Currently you can use these two:
  - Java Desktop - awt, swing
  - LWJGL
 
-You can read more information at the wiki, or ask me directly. [@PanJohnny1](https://twitter.com/PanJohnny1)
+You can read more information at the wiki, or ask me directly.
