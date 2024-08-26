@@ -24,6 +24,7 @@ public class TextureAtlas extends Sprite<Integer> {
         return height;
     }
 
+    @SuppressWarnings("unused")
     public AtlasRegion defineRegion(float offsetX, float offsetY, float width, float height) {
         if (!this.of(Integer.class))
             throw new UnsupportedOperationException("You can't turn this sprite into partition, it does not have the type of Integer");

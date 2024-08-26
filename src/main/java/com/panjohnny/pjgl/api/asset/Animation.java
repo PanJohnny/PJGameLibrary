@@ -251,9 +251,9 @@ public class Animation {
         // Run checks.
         check(json.has("id"), "mandatory argument not provided");
         check(json.has("frames"), "mandatory argument not provided");
-        check(json.get("frames").getAsJsonArray().size() > 0, "there must be minimally one frame of animation");
+        check(!json.get("frames").getAsJsonArray().isEmpty(), "there must be minimally one frame of animation");
         check(json.has("order"), "mandatory argument not provided");
-        check(json.get("order").getAsJsonArray().size() > 0);
+        check(!json.get("order").getAsJsonArray().isEmpty());
 
         String folder = new File(file).getParent() + "/"; // folder needs to end with / when merging strings later on
         String id = json.get("id").getAsString();

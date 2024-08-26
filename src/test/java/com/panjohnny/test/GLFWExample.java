@@ -5,19 +5,13 @@ import com.panjohnny.pjgl.adapt.lwjgl.GLFWWindow;
 import com.panjohnny.pjgl.adapt.lwjgl.LWJGLInitializer;
 import com.panjohnny.pjgl.api.PJGL;
 import com.panjohnny.pjgl.api.PJGLEvents;
-import com.panjohnny.pjgl.api.asset.Animation;
-import com.panjohnny.pjgl.api.asset.atlas.AtlasRegion;
 import com.panjohnny.pjgl.api.asset.SpriteRegistry;
-import com.panjohnny.pjgl.api.asset.atlas.TextureAtlas;
 import com.panjohnny.pjgl.api.object.GameObject;
-import com.panjohnny.pjgl.api.object.components.Animator;
 import com.panjohnny.pjgl.api.object.components.Position;
 import com.panjohnny.pjgl.api.object.components.Size;
 import com.panjohnny.pjgl.api.object.components.SpriteRenderer;
 import com.panjohnny.pjgl.core.EngineOptions;
 import org.lwjgl.glfw.GLFW;
-
-import java.io.FileNotFoundException;
 
 @SuppressWarnings("unused")
 public class GLFWExample {

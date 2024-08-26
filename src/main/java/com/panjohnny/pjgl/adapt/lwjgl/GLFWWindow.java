@@ -7,6 +7,7 @@ import com.panjohnny.pjgl.core.adapters.KeyboardAdapter;
 import com.panjohnny.pjgl.core.adapters.MouseAdapter;
 import com.panjohnny.pjgl.core.adapters.WindowAdapter;
 import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
@@ -75,7 +76,9 @@ public class GLFWWindow implements WindowAdapter {
             throw new RuntimeException("Failed to create the GLFW window");
 
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
-        glfwSetKeyCallback(WINDOW.get(), keyboard);
+        try ( GLFWKeyCallback keyCallback = GLFWKeyCallback.create(keyboard) ) {
+            glfwSetKeyCallback(WINDOW.get(), keyCallback);
+        }
 
         // Get the thread stack and push a new frame
         try ( MemoryStack stack = stackPush() ) {
