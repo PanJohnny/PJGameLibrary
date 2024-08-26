@@ -84,7 +84,7 @@ public class JDMouse implements MouseInputListener, MouseAdapter {
     }
 
     @Override
-    public boolean isKeyDown(int keyCode) {
+    public boolean isButtonDown(int keyCode) {
         return keys[keyCode];
     }
 

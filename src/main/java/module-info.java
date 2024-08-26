@@ -5,6 +5,8 @@ open module com.panjohnny.pjgl {
     requires org.lwjgl.opengl;
     requires com.google.gson;
     requires org.lwjgl.stb;
+    requires jdk.httpserver;
+    requires org.java_websocket;
 
     exports com.panjohnny.pjgl.adapt;
     exports com.panjohnny.pjgl.adapt.desktop;

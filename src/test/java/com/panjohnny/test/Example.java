@@ -14,7 +14,7 @@ public class Example {
         PJGL.init(new JDInitializer("Apple!"));
         PJGL pjgl = PJGL.getInstance();
 
-        SpriteRegistry.registerImageSprite("apple", "apple.png");
+        SpriteRegistry.registerImageSprite("apple", "./assets/apple.png");
 
         GameObject apple = new GameObject() {
             public final Position position = addComponent(new Position(this, 10, 10));

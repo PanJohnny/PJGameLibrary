@@ -23,7 +23,7 @@ public class PJGLCore implements Runnable {
     private final WindowAdapter window;
     private final RendererAdapter renderer;
     private final GameObjectManager manager;
-    public int fpsSetting = 60;
+    public int fpsSetting = -1;
 
     public int lastFPS = 0;
 

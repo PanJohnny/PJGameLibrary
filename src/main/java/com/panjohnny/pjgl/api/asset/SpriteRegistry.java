@@ -33,6 +33,7 @@ public final class SpriteRegistry {
      * @deprecated Please refrain from using this method as it does not differ from adaptation currently in use and only registers image sprites.
      * @see SpriteRegistry technical details
      */
+    @Deprecated
     public static <T> void registerSprite(String id, T t) {
         if (t instanceof String s) {
             registerImageSprite(id, s);

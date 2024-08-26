@@ -17,7 +17,7 @@ import static org.lwjgl.glfw.GLFW.*;
 @Adaptation("lwjgl@pjgl")
 public class GLFWMouse implements MouseAdapter {
     @Override
-    public boolean isKeyDown(int keyCode) {
+    public boolean isButtonDown(int keyCode) {
         return glfwGetMouseButton(WINDOW.get(), keyCode) == GLFW_PRESS;
     }
 

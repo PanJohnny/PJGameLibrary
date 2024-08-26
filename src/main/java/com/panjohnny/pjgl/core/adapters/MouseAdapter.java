@@ -11,10 +11,10 @@ public interface MouseAdapter {
     int BUTTON_MIDDLE = 1;
     int BUTTON_RIGHT = 2;
 
-    boolean isKeyDown(int keyCode);
+    boolean isButtonDown(int button);
 
-    default boolean isKeyUp(int keyCode) {
-        return !isKeyDown(keyCode);
+    default boolean isButtonUp(int button) {
+        return !isButtonDown(button);
     }
 
     double getX();
